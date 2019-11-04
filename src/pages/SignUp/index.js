@@ -24,7 +24,7 @@ export default function SignUp({ navigation }) {
   return (
     <Background>
       <Container>
-        <Image source={logo} style={{ height: 150, width: 150 }} />
+        <Image source={logo} />
 
         <Form>
           <FormInput
