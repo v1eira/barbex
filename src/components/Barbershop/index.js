@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -13,24 +14,39 @@ import {
   Grade,
 } from './styles';
 
-export default function Barbershop() {
+export default function Barbershop({ data }) {
   return (
     <TouchableOpacity onPress={() => {}}>
       <Container>
         <Left>
           <Avatar
-            source={{ uri: 'https://api.adorable.io/avatar/50/barbex.png' }}
+            source={{
+              uri: data.avatar
+                ? data.avatar.url
+                : `https://api.adorable.io/avatar/50/${data.name}.png`,
+            }}
           />
 
           <Info>
-            <Name>Maltadas Barbershop</Name>
-            <Address>Avenida São Paulo, 2202</Address>
+            <Name>{data.name}</Name>
+            <Address>
+              {`${data.address.street}, ${data.address.number}`}
+            </Address>
           </Info>
         </Left>
 
         <Star>
-          <Icon name="star" size={20} color="#ffbf00" />
-          <Grade>4,7</Grade>
+          {data.grade ? (
+            <>
+              <Icon name="star" size={20} color="#ffbf00" />
+              <Grade>{data.grade.toFixed(1)}</Grade>
+            </>
+          ) : (
+            <>
+              <Icon name="star-border" size={20} color="#ffbf00" />
+              <Grade>{data.grade}</Grade>
+            </>
+          )}
         </Star>
       </Container>
     </TouchableOpacity>

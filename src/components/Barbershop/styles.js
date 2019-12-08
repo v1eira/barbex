@@ -43,9 +43,11 @@ export const Address = styled.Text`
 export const Star = styled.View`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const Grade = styled.Text`
   font-weight: bold;
   color: #ffbf00;
+  padding-top: 3px;
 `;

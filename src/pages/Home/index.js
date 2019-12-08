@@ -1,22 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import api from '~/services/api';
 
 import Background from '~/components/Background';
 import Barbershop from '~/components/Barbershop';
 
 import { Container, Title, List } from './styles';
 
-const data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 export default function Home() {
+  const [barbershops, setBarbershops] = useState([]);
+
+  useEffect(() => {
+    async function loadBarbershops() {
+      const response = await api.get('barbershops');
+
+      setBarbershops(response.data);
+    }
+
+    loadBarbershops();
+  }, []);
+
   return (
     <Background>
       <Container>
         <Title>Barbearias</Title>
 
         <List
-          data={data}
-          keyExtractor={item => String(item)}
+          data={barbershops}
+          keyExtractor={item => String(item.id)}
           renderItem={({ item }) => <Barbershop data={item} />}
         />
       </Container>
