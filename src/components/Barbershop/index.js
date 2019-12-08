@@ -14,9 +14,11 @@ import {
   Grade,
 } from './styles';
 
-export default function Barbershop({ data }) {
+export default function Barbershop({ data, navigation }) {
   return (
-    <TouchableOpacity onPress={() => {}}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('SelectDateTime', { data })}
+    >
       <Container>
         <Left>
           <Avatar
