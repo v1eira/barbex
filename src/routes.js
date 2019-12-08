@@ -16,6 +16,7 @@ import SelectBarber from './pages/Home/SelectBarber';
 import SelectDateTime from './pages/Home/SelectDateTime';
 import Confirm from './pages/Home/Confirm';
 
+import Appointments from './pages/Appointments';
 import Profile from './pages/Profile';
 
 export default (signedIn = false) =>
@@ -54,6 +55,7 @@ export default (signedIn = false) =>
                 ),
               },
             },
+            Appointments,
             Profile,
           },
           {
