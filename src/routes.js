@@ -11,6 +11,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
 import SelectBarbershop from './pages/Home/SelectBarbershop';
+import SelectBarber from './pages/Home/SelectBarber';
 import SelectDateTime from './pages/Home/SelectDateTime';
 import Confirm from './pages/Home/Confirm';
 
@@ -30,6 +31,7 @@ export default (signedIn = false) =>
               screen: createStackNavigator(
                 {
                   SelectBarbershop,
+                  SelectBarber,
                   SelectDateTime,
                   Confirm,
                 },

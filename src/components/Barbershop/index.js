@@ -17,7 +17,7 @@ import {
 export default function Barbershop({ data, navigation }) {
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('SelectDateTime', { data })}
+      onPress={() => navigation.navigate('SelectBarber', { data })}
     >
       <Container>
         <Left>
