@@ -24,6 +24,7 @@ export const BarbershopAvatar = styled.Image`
 
 export const BarbershopInfo = styled.View`
   margin-left: 15px;
+  width: 200px;
 `;
 
 export const BarbershopName = styled.Text`
@@ -84,4 +85,5 @@ export const Date = styled.Text`
   font-size: 16px;
   color: #ff7b00;
   margin-top: 10px;
+  width: 200px;
 `;

@@ -21,11 +21,13 @@ import {
 } from './styles';
 
 export default function Appointment({ data }) {
-  console.tron.log(data);
-
-  const dateFormatted = format(parseISO(data.date), "dd 'de' MMMM 'de' yyyy", {
-    locale: pt,
-  });
+  const dateFormatted = format(
+    parseISO(data.date),
+    "dd 'de' MMMM 'de' yyyy', às' HH':'mm",
+    {
+      locale: pt,
+    }
+  );
 
   return (
     <Container>

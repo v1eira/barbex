@@ -19,9 +19,9 @@ export const Left = styled.View`
 `;
 
 export const Avatar = styled.Image`
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
 `;
 
 export const Info = styled.View`
