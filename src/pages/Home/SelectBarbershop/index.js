@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '~/services/api';
 
 import Background from '~/components/Background';
@@ -7,7 +7,7 @@ import Barbershop from '~/components/Barbershop';
 
 import { Container, Title, List } from './styles';
 
-export default function Home() {
+export default function Home({ navigation }) {
   const [barbershops, setBarbershops] = useState([]);
 
   useEffect(() => {
@@ -28,16 +28,11 @@ export default function Home() {
         <List
           data={barbershops}
           keyExtractor={item => String(item.id)}
-          renderItem={({ item }) => <Barbershop data={item} />}
+          renderItem={({ item }) => (
+            <Barbershop data={item} navigation={navigation} />
+          )}
         />
       </Container>
     </Background>
   );
 }
-
-Home.navigationOptions = {
-  tabBarLabel: 'Início',
-  tabBarIcon: ({ tintColor }) => (
-    <Icon name="home" size={20} color={tintColor} />
-  ),
-};
