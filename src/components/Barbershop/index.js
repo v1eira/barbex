@@ -15,9 +15,10 @@ import {
 } from './styles';
 
 export default function Barbershop({ data, navigation }) {
+  const barbershop = data;
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('SelectBarber', { data })}
+      onPress={() => navigation.navigate('SelectService', { barbershop })}
     >
       <Container>
         <Left>

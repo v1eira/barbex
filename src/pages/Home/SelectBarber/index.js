@@ -10,7 +10,8 @@ import { Container, BarbersList, Barber, Avatar, Name } from './styles';
 import Background from '~/components/Background';
 
 export default function SelectBarber({ navigation }) {
-  const barbershop = navigation.state.params.data;
+  const barbershop = navigation.getParam('barbershop');
+  const service = navigation.getParam('service');
 
   const [barbers, setBarbers] = useState([]);
 
@@ -33,7 +34,11 @@ export default function SelectBarber({ navigation }) {
           renderItem={({ item: barber }) => (
             <Barber
               onPress={() =>
-                navigation.navigate('SelectDateTime', { barbershop, barber })
+                navigation.navigate('SelectDateTime', {
+                  barbershop,
+                  service,
+                  barber,
+                })
               }
             >
               <Avatar
@@ -57,7 +62,7 @@ SelectBarber.navigationOptions = ({ navigation }) => ({
   headerLeft: () => (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('SelectBarbershop');
+        navigation.navigate('SelectService');
       }}
     >
       <Icon name="chevron-left" size={20} color="#FFF" />

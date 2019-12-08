@@ -15,6 +15,7 @@ export default function SelectDateTime({ navigation }) {
   const [hours, setHours] = useState([]);
 
   const barbershop = navigation.getParam('barbershop');
+  const service = navigation.getParam('service');
   const barber = navigation.getParam('barber');
 
   useEffect(() => {
@@ -41,6 +42,7 @@ export default function SelectDateTime({ navigation }) {
   function handleSelectHour(time) {
     navigation.navigate('Confirm', {
       barbershop,
+      service,
       barber,
       time,
     });
