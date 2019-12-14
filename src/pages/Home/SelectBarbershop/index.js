@@ -8,7 +8,7 @@ import Barbershop from '~/components/Barbershop';
 
 import { Container, Title, List } from './styles';
 
-function Home({ isFocused, navigation }) {
+function SelectBarbershop({ isFocused, navigation }) {
   const [barbershops, setBarbershops] = useState([]);
 
   async function loadBarbershops() {
@@ -40,4 +40,4 @@ function Home({ isFocused, navigation }) {
   );
 }
 
-export default withNavigationFocus(Home);
+export default withNavigationFocus(SelectBarbershop);

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Alert } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 
 import api from '~/services/api';
@@ -8,9 +8,9 @@ import api from '~/services/api';
 import Background from '~/components/Background';
 import Appointment from '~/components/Appointment';
 
-import { Container, Title, List } from './styles';
+import { Container, List } from '../styles';
 
-function Appointments({ navigation, isFocused }) {
+function All({ navigation, isFocused }) {
   const [appointments, setAppointments] = useState([]);
 
   async function loadAppointments() {
@@ -40,17 +40,32 @@ function Appointments({ navigation, isFocused }) {
     );
   }
 
+  function showAlert(id) {
+    Alert.alert(
+      'Cancelar agendamento',
+      'Tem certeza que deseja cancelar este agendamento?\n\nEsta ação não pode ser revertida',
+      [
+        {
+          text: 'Não',
+        },
+        {
+          text: 'Sim',
+          onPress: () => handleCancel(id),
+          style: 'cancel',
+        },
+      ]
+    );
+  }
+
   return (
     <Background>
       <Container>
-        <Title>Barbearias</Title>
-
         <List
           data={appointments}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
             <Appointment
-              onCancel={() => handleCancel(item.id)}
+              onCancel={() => showAlert(item.id)}
               data={item}
               navigation={navigation}
             />
@@ -61,11 +76,8 @@ function Appointments({ navigation, isFocused }) {
   );
 }
 
-Appointments.navigationOptions = {
-  tabBarLabel: 'Agendamentos',
-  tabBarIcon: ({ tintColor }) => (
-    <Icon name="event" size={20} color={tintColor} />
-  ),
+All.navigationOptions = {
+  tabBarLabel: 'Todos',
 };
 
-export default withNavigationFocus(Appointments);
+export default withNavigationFocus(All);

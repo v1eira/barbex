@@ -90,3 +90,16 @@ export const CancelButton = styled(RectButton)`
   align-items: center;
   padding-top: 5px;
 `;
+
+export const Canceled = styled.View`
+  margin-top: 10px;
+  align-self: center;
+  align-items: center;
+  flex-direction: row;
+`;
+
+export const CanceledText = styled.Text`
+  font-size: 18px;
+  color: #f22;
+  margin-left: 5px;
+`;

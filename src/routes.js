@@ -2,7 +2,10 @@
 import React from 'react';
 
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import {
+  createBottomTabNavigator,
+  createMaterialTopTabNavigator,
+} from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -16,7 +19,9 @@ import SelectBarber from './pages/Home/SelectBarber';
 import SelectDateTime from './pages/Home/SelectDateTime';
 import Confirm from './pages/Home/Confirm';
 
-import Appointments from './pages/Appointments';
+import Previous from './pages/Appointments/Previous';
+import All from './pages/Appointments/All';
+import Next from './pages/Appointments/Next';
 import Profile from './pages/Profile';
 
 export default (signedIn = false) =>
@@ -55,7 +60,36 @@ export default (signedIn = false) =>
                 ),
               },
             },
-            Appointments,
+            Appointments: {
+              screen: createMaterialTopTabNavigator(
+                {
+                  Previous,
+                  All,
+                  Next,
+                },
+                {
+                  tabBarOptions: {
+                    style: {
+                      backgroundColor: '#000',
+                    },
+                    indicatorStyle: {
+                      backgroundColor: '#ff7b00',
+                    },
+                    labelStyle: {
+                      fontWeight: 'bold',
+                    },
+                  },
+                  initialRouteName: 'All',
+                  backBehavior: 'order',
+                }
+              ),
+              navigationOptions: {
+                tabBarLabel: 'Agendamentos',
+                tabBarIcon: ({ tintColor }) => (
+                  <Icon name="event" size={20} color={tintColor} />
+                ),
+              },
+            },
             Profile,
           },
           {

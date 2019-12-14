@@ -21,6 +21,8 @@ import {
   Price,
   Date,
   CancelButton,
+  Canceled,
+  CanceledText,
 } from './styles';
 
 export default function Appointment({ data, onCancel }) {
@@ -77,6 +79,13 @@ export default function Appointment({ data, onCancel }) {
             <Icon name="event-busy" size={30} color="#f22" />
           </CancelButton>
         </>
+      )}
+
+      {data.canceled_at && (
+        <Canceled>
+          <Icon name="cancel" size={20} color="#f22" />
+          <CanceledText>Cancelado</CanceledText>
+        </Canceled>
       )}
     </Container>
   );
