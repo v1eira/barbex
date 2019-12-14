@@ -1,16 +1,19 @@
 import styled from 'styled-components/native';
+import { RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
   margin-bottom: 15px;
   padding: 20px;
   border-radius: 4px;
-  background: #111;
+  background: #222;
+  opacity: ${props => (props.isPast || props.isCanceled ? 0.5 : 1)};
 
   display: flex;
   flex-direction: column;
 `;
 
-export const Center = styled.View`
+export const Left = styled.View`
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
@@ -37,13 +40,6 @@ export const Separator = styled.View`
   height: 1px;
   background: #ff7b00;
   margin: 10px;
-`;
-
-export const Left = styled.View`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
 `;
 
 export const Avatar = styled.Image`
@@ -86,4 +82,11 @@ export const Date = styled.Text`
   color: #ff7b00;
   margin-top: 10px;
   width: 200px;
+`;
+
+export const CancelButton = styled(RectButton)`
+  background: transparent;
+  align-self: center;
+  align-items: center;
+  padding-top: 5px;
 `;

@@ -25,6 +25,21 @@ function Appointments({ navigation, isFocused }) {
     }
   }, [isFocused]);
 
+  async function handleCancel(id) {
+    await api.delete(`appointments/${id}`);
+
+    setAppointments(
+      appointments.map(appointment =>
+        appointment.id === id
+          ? {
+              ...appointment,
+              canceled_at: new Date(),
+            }
+          : appointment
+      )
+    );
+  }
+
   return (
     <Background>
       <Container>
@@ -34,7 +49,11 @@ function Appointments({ navigation, isFocused }) {
           data={appointments}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
-            <Appointment data={item} navigation={navigation} />
+            <Appointment
+              onCancel={() => handleCancel(item.id)}
+              data={item}
+              navigation={navigation}
+            />
           )}
         />
       </Container>

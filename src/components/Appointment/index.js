@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
 import {
   Container,
-  Center,
   BarbershopAvatar,
   BarbershopInfo,
   BarbershopName,
@@ -18,9 +20,10 @@ import {
   Service,
   Price,
   Date,
+  CancelButton,
 } from './styles';
 
-export default function Appointment({ data }) {
+export default function Appointment({ data, onCancel }) {
   const dateFormatted = format(
     parseISO(data.date),
     "dd 'de' MMMM 'de' yyyy', às' HH':'mm",
@@ -29,9 +32,11 @@ export default function Appointment({ data }) {
     }
   );
 
+  console.tron.log(data);
+
   return (
-    <Container>
-      <Center>
+    <Container isPast={data.past} isCanceled={data.canceled_at}>
+      <Left>
         <BarbershopAvatar
           source={{
             uri: data.barbershop.avatar
@@ -43,7 +48,7 @@ export default function Appointment({ data }) {
           <BarbershopName>{data.barbershop.name}</BarbershopName>
           <Address>{`${data.barbershop.address.street}, ${data.barbershop.address.number}`}</Address>
         </BarbershopInfo>
-      </Center>
+      </Left>
 
       <Separator />
 
@@ -63,6 +68,16 @@ export default function Appointment({ data }) {
           <Date>{dateFormatted}</Date>
         </Info>
       </Left>
+
+      {data.cancelable && !data.canceled_at && (
+        <>
+          <Separator />
+
+          <CancelButton onPress={onCancel}>
+            <Icon name="event-busy" size={30} color="#f22" />
+          </CancelButton>
+        </>
+      )}
     </Container>
   );
 }

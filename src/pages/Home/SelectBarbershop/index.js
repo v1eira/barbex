@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
+import { withNavigationFocus } from 'react-navigation';
 import api from '~/services/api';
 
 import Background from '~/components/Background';
@@ -7,18 +8,20 @@ import Barbershop from '~/components/Barbershop';
 
 import { Container, Title, List } from './styles';
 
-export default function Home({ navigation }) {
+function Home({ isFocused, navigation }) {
   const [barbershops, setBarbershops] = useState([]);
 
+  async function loadBarbershops() {
+    const response = await api.get('barbershops');
+
+    setBarbershops(response.data);
+  }
+
   useEffect(() => {
-    async function loadBarbershops() {
-      const response = await api.get('barbershops');
-
-      setBarbershops(response.data);
+    if (isFocused) {
+      loadBarbershops();
     }
-
-    loadBarbershops();
-  }, []);
+  }, [isFocused]);
 
   return (
     <Background>
@@ -36,3 +39,5 @@ export default function Home({ navigation }) {
     </Background>
   );
 }
+
+export default withNavigationFocus(Home);
