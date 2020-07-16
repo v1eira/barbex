@@ -18,8 +18,6 @@ export default function Confirm({ navigation }) {
   const barber = navigation.getParam('barber');
   const time = navigation.getParam('time');
 
-  console.tron.log(navigation);
-
   const dateFormatted = useMemo(
     () => formatRelative(parseISO(time), new Date(), { locale: pt }),
     [time]
@@ -65,7 +63,7 @@ Confirm.navigationOptions = ({ navigation }) => ({
         navigation.navigate('SelectDateTime');
       }}
     >
-      <Icon name="chevron-left" size={20} color="#FFF" />
+      <Icon name="chevron-left" size={30} color="#FFF" />
     </TouchableOpacity>
   ),
 });

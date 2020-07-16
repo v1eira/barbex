@@ -54,7 +54,7 @@ SelectService.navigationOptions = ({ navigation }) => ({
         navigation.navigate('SelectBarbershop');
       }}
     >
-      <Icon name="chevron-left" size={20} color="#FFF" />
+      <Icon name="chevron-left" size={30} color="#FFF" />
     </TouchableOpacity>
   ),
 });

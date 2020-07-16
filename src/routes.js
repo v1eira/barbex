@@ -20,7 +20,6 @@ import SelectDateTime from './pages/Home/SelectDateTime';
 import Confirm from './pages/Home/Confirm';
 
 import Previous from './pages/Appointments/Previous';
-import All from './pages/Appointments/All';
 import Next from './pages/Appointments/Next';
 import Profile from './pages/Profile';
 
@@ -64,7 +63,6 @@ export default (signedIn = false) =>
               screen: createMaterialTopTabNavigator(
                 {
                   Previous,
-                  All,
                   Next,
                 },
                 {
@@ -79,7 +77,7 @@ export default (signedIn = false) =>
                       fontWeight: 'bold',
                     },
                   },
-                  initialRouteName: 'All',
+                  initialRouteName: 'Next',
                   backBehavior: 'order',
                 }
               ),

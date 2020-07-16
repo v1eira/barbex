@@ -6,26 +6,52 @@ export const Container = styled.View`
   padding: 20px;
   border-radius: 4px;
   background: #222;
-  opacity: ${props => (props.isPast || props.isCanceled ? 0.5 : 1)};
+  opacity: ${props => (props.isCanceled ? 0.7 : 1)};
 
   display: flex;
   flex-direction: column;
 `;
 
-export const Left = styled.View`
+export const First = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+export const Date = styled.Text`
+  font-weight: bold;
+  font-size: 14px;
+  color: #ff7b00;
+`;
+
+export const CancelButton = styled(RectButton)`
+  background: transparent;
+  align-self: center;
+  align-items: center;
+`;
+
+export const Canceled = styled.View`
+  align-self: center;
+  align-items: center;
+  flex-direction: row;
+`;
+
+export const Section = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
 `;
 
-export const BarbershopAvatar = styled.Image`
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
+export const Avatar = styled.Image`
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
 `;
 
-export const BarbershopInfo = styled.View`
+export const Info = styled.View`
   margin-left: 15px;
   width: 200px;
 `;
@@ -39,17 +65,7 @@ export const BarbershopName = styled.Text`
 export const Separator = styled.View`
   height: 1px;
   background: #ff7b00;
-  margin: 10px;
-`;
-
-export const Avatar = styled.Image`
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
-`;
-
-export const Info = styled.View`
-  margin-left: 15px;
+  margin: 12px 0;
 `;
 
 export const Name = styled.Text`
@@ -61,7 +77,7 @@ export const Name = styled.Text`
 export const Address = styled.Text`
   color: #999;
   font-size: 13px;
-  margin-top: 4px;
+  margin-top: 2px;
 `;
 
 export const Service = styled.Text`
@@ -73,33 +89,6 @@ export const Service = styled.Text`
 export const Price = styled.Text`
   font-weight: bold;
   font-size: 14px;
-  color: #fff;
-`;
-
-export const Date = styled.Text`
-  font-weight: bold;
-  font-size: 16px;
   color: #ff7b00;
-  margin-top: 10px;
-  width: 200px;
-`;
-
-export const CancelButton = styled(RectButton)`
-  background: transparent;
-  align-self: center;
-  align-items: center;
-  padding-top: 5px;
-`;
-
-export const Canceled = styled.View`
-  margin-top: 10px;
-  align-self: center;
-  align-items: center;
-  flex-direction: row;
-`;
-
-export const CanceledText = styled.Text`
-  font-size: 18px;
-  color: #f22;
-  margin-left: 5px;
+  margin-top: 5px;
 `;

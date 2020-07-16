@@ -8,21 +8,19 @@ import pt from 'date-fns/locale/pt';
 
 import {
   Container,
-  BarbershopAvatar,
-  BarbershopInfo,
+  First,
+  Date,
+  CancelButton,
+  Canceled,
+  Avatar,
   BarbershopName,
   Address,
   Separator,
-  Left,
-  Avatar,
+  Section,
   Info,
   Name,
   Service,
   Price,
-  Date,
-  CancelButton,
-  Canceled,
-  CanceledText,
 } from './styles';
 
 export default function Appointment({ data, onCancel }) {
@@ -34,27 +32,39 @@ export default function Appointment({ data, onCancel }) {
     }
   );
 
-  console.tron.log(data);
-
   return (
     <Container isPast={data.past} isCanceled={data.canceled_at}>
-      <Left>
-        <BarbershopAvatar
+      <First>
+        <Date>{dateFormatted}</Date>
+        {data.cancelable && !data.canceled_at && (
+          <CancelButton onPress={onCancel}>
+            <Icon name="event-busy" size={20} color="#f22" />
+          </CancelButton>
+        )}
+        {data.canceled_at && (
+          <Canceled>
+            <Icon name="cancel" size={20} color="#f22" />
+          </Canceled>
+        )}
+      </First>
+
+      <Section>
+        <Avatar
           source={{
             uri: data.barbershop.avatar
               ? data.barbershop.avatar.url
               : `https://api.adorable.io/avatar/50/${data.barbershop.name}.png`,
           }}
         />
-        <BarbershopInfo>
+        <Info>
           <BarbershopName>{data.barbershop.name}</BarbershopName>
           <Address>{`${data.barbershop.address.street}, ${data.barbershop.address.number}`}</Address>
-        </BarbershopInfo>
-      </Left>
+        </Info>
+      </Section>
 
       <Separator />
 
-      <Left>
+      <Section>
         <Avatar
           source={{
             uri: data.barber.user.avatar
@@ -62,31 +72,12 @@ export default function Appointment({ data, onCancel }) {
               : `https://api.adorable.io/avatar/50/${data.barber.user.name}.png`,
           }}
         />
-
         <Info>
           <Name>Barbeiro: {data.barber.user.name}</Name>
           <Service>Serviço: {data.service}</Service>
           <Price>R$: {data.price.toFixed(2)}</Price>
-          <Date>{dateFormatted}</Date>
         </Info>
-      </Left>
-
-      {data.cancelable && !data.canceled_at && (
-        <>
-          <Separator />
-
-          <CancelButton onPress={onCancel}>
-            <Icon name="event-busy" size={30} color="#f22" />
-          </CancelButton>
-        </>
-      )}
-
-      {data.canceled_at && (
-        <Canceled>
-          <Icon name="cancel" size={20} color="#f22" />
-          <CanceledText>Cancelado</CanceledText>
-        </Canceled>
-      )}
+      </Section>
     </Container>
   );
 }
