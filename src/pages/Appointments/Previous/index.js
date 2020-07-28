@@ -7,13 +7,19 @@ import api from '~/services/api';
 import Background from '~/components/Background';
 import Appointment from '~/components/Appointment';
 
-import { Container, List } from '../styles';
+import { Container, List, Empty } from '../styles';
 
 function Previous({ navigation, isFocused }) {
   const [appointments, setAppointments] = useState([]);
 
   async function loadAppointments() {
-    const response = await api.get('appointments');
+    const response = await api.get('appointments',
+    {
+      params: {
+        page: 1,
+        filter: 'past'
+      }
+    });
 
     setAppointments(response.data);
   }
@@ -27,13 +33,20 @@ function Previous({ navigation, isFocused }) {
   return (
     <Background>
       <Container>
-        <List
-          data={appointments}
-          keyExtractor={item => String(item.id)}
-          renderItem={({ item }) => (
-            <Appointment data={item} navigation={navigation} />
-          )}
-        />
+        {appointments.length > 0
+        ? (
+          <List
+            data={appointments}
+            keyExtractor={item => String(item.id)}
+            renderItem={({ item }) => (
+              <Appointment data={item} navigation={navigation} />
+            )}
+          />
+        )
+        : (
+          <Empty>Você ainda não fez um agendamento{"\n"}:(</Empty>
+        )
+        }
       </Container>
     </Background>
   );
