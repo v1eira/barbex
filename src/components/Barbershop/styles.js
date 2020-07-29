@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  margin-bottom: 15px;
-  padding: 20px;
+  margin-bottom: 10px;
+  padding: 10px 20px;
   border-radius: 4px;
-  background: #111;
+  background: #222;
 
   display: flex;
   flex-direction: row;

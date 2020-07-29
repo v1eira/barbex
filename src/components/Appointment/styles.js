@@ -3,7 +3,7 @@ import { RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
   margin-bottom: 15px;
-  padding: 20px;
+  padding: 10px;
   border-radius: 4px;
   background: #222;
   opacity: ${props => (props.isCanceled ? 0.7 : 1)};
@@ -42,7 +42,7 @@ export const Section = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
 `;
 
 export const Avatar = styled.Image`
@@ -66,6 +66,8 @@ export const Separator = styled.View`
   height: 1px;
   background: #ff7b00;
   margin: 12px 0;
+  align-self: center;
+  width: 90%;
 `;
 
 export const Name = styled.Text`

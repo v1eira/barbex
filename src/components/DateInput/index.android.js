@@ -14,10 +14,16 @@ export default function DateInput({ date, onChange }) {
     [date]
   );
 
+  const dt = new Date();
+  const today = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate());
+  const oneMonthAway = new Date(dt.getFullYear(), dt.getMonth() + 1, dt.getDate());
+
   async function handleOpenPicker() {
     const { action, year, month, day } = await DatePickerAndroid.open({
       mode: 'spinner',
       date,
+      minDate: today,
+      maxDate: oneMonthAway,
     });
 
     if (action === DatePickerAndroid.dateSetAction) {

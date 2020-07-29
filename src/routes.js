@@ -47,7 +47,7 @@ export default (signedIn = false) =>
                     headerTransparent: true,
                     headerTintColor: '#FFF',
                     headerLeftContainerStyle: {
-                      marginLeft: 20,
+                      marginLeft: 10,
                     },
                   },
                 }
@@ -55,7 +55,7 @@ export default (signedIn = false) =>
               navigationOptions: {
                 tabBarLabel: 'Início',
                 tabBarIcon: ({ tintColor }) => (
-                  <Icon name="home" size={20} color={tintColor} />
+                  <Icon name="home" size={22} color={tintColor} />
                 ),
               },
             },
@@ -76,6 +76,7 @@ export default (signedIn = false) =>
                     labelStyle: {
                       fontWeight: 'bold',
                     },
+                    inactiveTintColor: '#666'
                   },
                   initialRouteName: 'Next',
                   backBehavior: 'order',
@@ -84,19 +85,35 @@ export default (signedIn = false) =>
               navigationOptions: {
                 tabBarLabel: 'Agendamentos',
                 tabBarIcon: ({ tintColor }) => (
-                  <Icon name="event" size={20} color={tintColor} />
+                  <Icon name="event" size={22} color={tintColor} />
                 ),
               },
             },
-            Profile,
+            Profile: {
+              screen: Profile,
+              navigationOptions: {
+                tabBarLabel: 'Perfil',
+                tabBarIcon: ({ tintColor }) => (
+                  <Icon name="person" size={22} color={tintColor} />
+                ),
+              },
+            },
           },
           {
             tabBarOptions: {
               keyboardHidesTabBar: true,
               activeTintColor: '#FFF',
-              inactiveTintColor: 'rgba(255, 255, 255, 0.55)',
+              inactiveTintColor: '#666',
               style: {
                 backgroundColor: '#111',
+                borderTopColor: '#111',
+                height: 55,
+                paddingTop: 5,
+                paddingBottom: 2,
+              },
+              labelStyle: {
+                marginBottom: 5,
+                fontSize: 11
               },
             },
           }

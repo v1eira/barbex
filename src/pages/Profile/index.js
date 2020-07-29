@@ -147,10 +147,3 @@ export default function Profile() {
     </Background>
   );
 }
-
-Profile.navigationOptions = {
-  tabBarLabel: 'Perfil',
-  tabBarIcon: ({ tintColor }) => (
-    <Icon name="person" size={20} color={tintColor} />
-  ),
-};
