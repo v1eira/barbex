@@ -4,7 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import ImagePicker from 'react-native-image-crop-picker';
 
+import api from '~/services/api';
 import Background from '~/components/Background';
 import { signOut } from '~/store/modules/auth/actions';
 import { updateProfileRequest } from '~/store/modules/user/actions';
@@ -29,6 +31,7 @@ export default function Profile() {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
 
+  const [avatarUrl, setAvatarUrl] = useState(profile.avatar?.url || null);
   const [name, setName] = useState(profile.name);
   const [email, setEmail] = useState(profile.email);
   const [oldPassword, setOldPassword] = useState('');
@@ -63,17 +66,39 @@ export default function Profile() {
     dispatch(signOut());
   }
 
+  const choosePhotoFromLibrary = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 300,
+      cropping: true
+    }).then(async (image) => {
+      const data = new FormData();
+      data.append('file', {
+        uri: image.path,
+        type: image.mime,
+        name: `${email}-profile-picture`
+      });
+
+      const response = await api.post('images', data, { headers: {'Content-Type': 'multipart/form-data' } });
+      const { id, url } = response.data;
+
+      const r = await api.put('users', { avatar_id: id });
+
+      setAvatarUrl(url);
+    });
+  }
+
   return (
     <Background>
       <Container>
         <Title>Meu perfil</Title>
 
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity onPress={choosePhotoFromLibrary}>
           <Avatar
             source={
-              profile.avatar
+              avatarUrl
                 ? {
-                    uri: profile.avatar.url,
+                    uri: avatarUrl,
                   }
                 : require('../../assets/blank-profile-picture.jpg')
             }
