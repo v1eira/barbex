@@ -36,14 +36,14 @@ export default function Appointment({ data, onCancel, navigation }) {
   );
 
   function RatingGrade({ grade }) {
-    const arr  = [...Array(5).keys()];
-    return (
-      arr.map(i => {
-        return i <= grade - 1
-        ? <Icon name="star" key={i} size={15} color="#ffbf00" />
-        : <Icon name="star-border" key={i} size={15} color="#ffbf00" />
-      })
-    );
+    const arr = [...Array(5).keys()];
+    return arr.map(i => {
+      return i <= grade - 1 ? (
+        <Icon name="star" key={i} size={15} color="#ffbf00" />
+      ) : (
+        <Icon name="star-border" key={i} size={15} color="#ffbf00" />
+      );
+    });
   }
 
   return (
@@ -95,12 +95,17 @@ export default function Appointment({ data, onCancel, navigation }) {
 
       {data.past && !data.canceled_at && (
         <Rate>
-          {data.rating
-            ? <RatingGrade grade={parseInt(data.rating.grade)} />
-            : <TouchableOpacity onPress={() => navigation.navigate('Rate', { appointmentId: data.id })}>
-                <RateText>Avaliar atendimento</RateText>
-              </TouchableOpacity>
-          }
+          {data.rating ? (
+            <RatingGrade grade={parseInt(data.rating.grade)} />
+          ) : (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('Rate', { appointmentId: data.id })
+              }
+            >
+              <RateText>Avaliar atendimento</RateText>
+            </TouchableOpacity>
+          )}
         </Rate>
       )}
     </Container>

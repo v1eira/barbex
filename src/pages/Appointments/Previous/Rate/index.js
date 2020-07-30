@@ -15,23 +15,28 @@ export default function Rate({ navigation }) {
 
   const [comment, setComment] = useState('');
   const [grade, setGrade] = useState(1);
+  const [isFocused, setIsFocused] = useState(false);
 
-  function RatingGrade({ grade }) {
-    const arr  = [...Array(5).keys()];
-    return (
-      arr.map(i => {
-        return i <= parseInt(grade) - 1
-        ? <TouchableOpacity onPress={() => setGrade(i + 1)} ><Icon name="star" key={i} size={30} color="#ffbf00"/></TouchableOpacity>
-        : <TouchableOpacity onPress={() => setGrade(i + 1)} ><Icon name="star-border" key={i} size={30} color="#ffbf00"/></TouchableOpacity>
-      })
-    );
+  function RatingGrade() {
+    const arr = [...Array(5).keys()];
+    return arr.map(i => {
+      return i <= parseInt(grade) - 1 ? (
+        <TouchableOpacity onPress={() => setGrade(i + 1)}>
+          <Icon name="star" key={i} size={30} color="#ffbf00" />
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity onPress={() => setGrade(i + 1)}>
+          <Icon name="star-border" key={i} size={30} color="#ffbf00" />
+        </TouchableOpacity>
+      );
+    });
   }
 
   async function handleSubmit() {
     await api.post('ratings', {
       appointment_id: appointmentId,
-      grade: grade,
-      comment: comment,
+      grade,
+      comment,
     });
 
     Alert.alert(
@@ -50,14 +55,19 @@ export default function Rate({ navigation }) {
     <Background>
       <Container>
         <Grade>
-          <RatingGrade grade={grade} />
+          <RatingGrade />
         </Grade>
         <LabelText>Quer deixar um comentário?</LabelText>
         <Comment
-          multiline={true}
+          multiline
           numberOfLines={5}
-          onChangeText={(text) => {setComment(text)}}
+          onChangeText={text => {
+            setComment(text);
+          }}
           value={comment}
+          focus={isFocused}
+          onFocus={() => setIsFocused(!isFocused)}
+          onBlur={() => setIsFocused(!isFocused)}
         />
         <SubmitButton onPress={handleSubmit}>Avaliar</SubmitButton>
       </Container>

@@ -2,11 +2,9 @@ import styled from 'styled-components/native';
 
 import Button from '~/components/Button';
 
-export const Container = styled.View`
-  flex: 1;
+export const Container = styled.ScrollView`
   padding: 0 30px;
   margin-top: 70px;
-  align-items: center;
 `;
 
 export const Grade = styled.View`
@@ -31,9 +29,9 @@ export const Comment = styled.TextInput`
   padding: 12px;
   margin-top: 10px;
   border-radius: 4px;
-  background: #111;
+  background: ${props => (props.focus ? '#1c1c1c' : '#111')};
   font-size: 14px;
-  color: #999;
+  color: #fff;
 `;
 
 export const SubmitButton = styled(Button)`
