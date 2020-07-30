@@ -3,7 +3,7 @@ import { RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
   margin-bottom: 15px;
-  padding: 10px;
+  padding: 12px;
   border-radius: 4px;
   background: #222;
   opacity: ${props => (props.isCanceled ? 0.7 : 1)};
@@ -46,9 +46,9 @@ export const Section = styled.View`
 `;
 
 export const Avatar = styled.Image`
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
 `;
 
 export const Info = styled.View`
@@ -93,4 +93,18 @@ export const Price = styled.Text`
   font-size: 14px;
   color: #ff7b00;
   margin-top: 5px;
+`;
+
+export const Rate = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  margin-top: 15px;
+`;
+
+export const RateText = styled.Text`
+  font-size: 14px;
+  color: #ff7b00;
+  margin-top: 10px;
+  font-weight: normal;
 `;

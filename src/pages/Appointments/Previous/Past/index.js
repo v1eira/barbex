@@ -7,9 +7,9 @@ import api from '~/services/api';
 import Background from '~/components/Background';
 import Appointment from '~/components/Appointment';
 
-import { Container, List, Empty } from '../styles';
+import { Container, List, Empty } from '../../styles';
 
-function Previous({ navigation, isFocused }) {
+function Past({ navigation, isFocused }) {
   const [appointments, setAppointments] = useState([]);
 
   async function loadAppointments() {
@@ -52,8 +52,4 @@ function Previous({ navigation, isFocused }) {
   );
 }
 
-Previous.navigationOptions = {
-  tabBarLabel: 'Anteriores',
-};
-
-export default withNavigationFocus(Previous);
+export default withNavigationFocus(Past);

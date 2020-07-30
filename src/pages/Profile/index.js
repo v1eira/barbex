@@ -73,16 +73,19 @@ export default function Profile() {
       cropping: true
     }).then(async (image) => {
       const data = new FormData();
+      const arr = image.path.split('/');
+      const u = name.replace(/\s+/g, '');
+
       data.append('file', {
         uri: image.path,
         type: image.mime,
-        name: `${email}-profile-picture`
+        name: `${u}-${arr[arr.length -1]}`
       });
 
       const response = await api.post('images', data, { headers: {'Content-Type': 'multipart/form-data' } });
       const { id, url } = response.data;
 
-      const r = await api.put('users', { avatar_id: id });
+      await api.put('users', { avatar_id: id });
 
       setAvatarUrl(url);
     });

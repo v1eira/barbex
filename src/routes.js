@@ -19,7 +19,8 @@ import SelectBarber from './pages/Home/SelectBarber';
 import SelectDateTime from './pages/Home/SelectDateTime';
 import Confirm from './pages/Home/Confirm';
 
-import Previous from './pages/Appointments/Previous';
+import Past from './pages/Appointments/Previous/Past';
+import Rate from './pages/Appointments/Previous/Rate'
 import Next from './pages/Appointments/Next';
 import Profile from './pages/Profile';
 
@@ -62,7 +63,23 @@ export default (signedIn = false) =>
             Appointments: {
               screen: createMaterialTopTabNavigator(
                 {
-                  Previous,
+                  Anteriores: {
+                    screen: createStackNavigator(
+                      {
+                        Past,
+                        Rate,
+                      },
+                      {
+                        defaultNavigationOptions: {
+                          headerTransparent: true,
+                          headerTintColor: '#FFF',
+                          headerLeftContainerStyle: {
+                            marginLeft: 10,
+                          },
+                        },
+                      }
+                    ),
+                  },
                   Next,
                 },
                 {

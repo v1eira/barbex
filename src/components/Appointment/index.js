@@ -2,6 +2,7 @@
 import React from 'react';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { TouchableOpacity } from 'react-native';
 
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
@@ -21,9 +22,11 @@ import {
   Name,
   Service,
   Price,
+  Rate,
+  RateText,
 } from './styles';
 
-export default function Appointment({ data, onCancel }) {
+export default function Appointment({ data, onCancel, navigation }) {
   const dateFormatted = format(
     parseISO(data.date),
     "dd 'de' MMMM 'de' yyyy', às' HH':'mm",
@@ -31,6 +34,17 @@ export default function Appointment({ data, onCancel }) {
       locale: pt,
     }
   );
+
+  function RatingGrade({ grade }) {
+    const arr  = [...Array(5).keys()];
+    return (
+      arr.map(i => {
+        return i <= grade - 1
+        ? <Icon name="star" key={i} size={15} color="#ffbf00" />
+        : <Icon name="star-border" key={i} size={15} color="#ffbf00" />
+      })
+    );
+  }
 
   return (
     <Container isPast={data.past} isCanceled={data.canceled_at}>
@@ -78,6 +92,17 @@ export default function Appointment({ data, onCancel }) {
           <Price>R$: {data.price.toFixed(2)}</Price>
         </Info>
       </Section>
+
+      {data.past && !data.canceled_at && (
+        <Rate>
+          {data.rating
+            ? <RatingGrade grade={parseInt(data.rating.grade)} />
+            : <TouchableOpacity onPress={() => navigation.navigate('Rate', { appointmentId: data.id })}>
+                <RateText>Avaliar atendimento</RateText>
+              </TouchableOpacity>
+          }
+        </Rate>
+      )}
     </Container>
   );
 }
