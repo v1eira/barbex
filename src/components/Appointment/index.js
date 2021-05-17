@@ -56,9 +56,7 @@ export default function Appointment({ data, onCancel, navigation }) {
           </CancelButton>
         )}
         {data.canceled_at && (
-          <Canceled>
-            <Icon name="clear" size={20} color="#f22" />
-          </Canceled>
+          <Canceled>Cancelado</Canceled>
         )}
       </First>
 

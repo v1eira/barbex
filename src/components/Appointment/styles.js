@@ -32,7 +32,10 @@ export const CancelButton = styled(RectButton)`
   align-items: center;
 `;
 
-export const Canceled = styled.View`
+export const Canceled = styled.Text`
+  font-size: 14px;
+  font-weight: bold;
+  color: #f22;
   align-self: center;
   align-items: center;
   flex-direction: row;

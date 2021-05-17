@@ -14,9 +14,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
 import SelectBarbershop from './pages/Home/SelectBarbershop';
-import SelectService from './pages/Home/SelectService';
-import SelectBarber from './pages/Home/SelectBarber';
-import SelectDateTime from './pages/Home/SelectDateTime';
+import BarbershopDetails from './pages/Home/BarbershopDetails';
 import Confirm from './pages/Home/Confirm';
 
 import Past from './pages/Appointments/Previous/Past';
@@ -38,9 +36,7 @@ export default (signedIn = false) =>
               screen: createStackNavigator(
                 {
                   SelectBarbershop,
-                  SelectService,
-                  SelectBarber,
-                  SelectDateTime,
+                  BarbershopDetails,
                   Confirm,
                 },
                 {

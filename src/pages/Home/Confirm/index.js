@@ -19,8 +19,8 @@ export default function Confirm({ navigation }) {
   const time = navigation.getParam('time');
 
   const dateFormatted = useMemo(
-    () => formatRelative(parseISO(time), new Date(), { locale: pt }),
-    [time]
+    () => formatRelative(parseISO(time.value), new Date(), { locale: pt }),
+    [time.value]
   );
 
   async function handleAddAppointment() {
@@ -28,7 +28,7 @@ export default function Confirm({ navigation }) {
       barber_id: barber.id,
       barbershop_service_id: service.id,
       barbershop_id: barbershop.id,
-      date: time,
+      date: time.value,
     });
 
     navigation.navigate('SelectBarbershop');
@@ -41,7 +41,7 @@ export default function Confirm({ navigation }) {
           source={{
             uri: barber.user.avatar
               ? barber.user.avatar.url
-              : `https://api.adorable.io/avatar/50/${barber.user.name}.png`,
+              : `https://pbs.twimg.com/profile_images/1236710786061524994/JcWN0IOE_400x400.jpg`,
           }}
         />
 
@@ -49,7 +49,7 @@ export default function Confirm({ navigation }) {
 
         <Time>{dateFormatted}</Time>
 
-        <SubmitButton onPress={handleAddAppointment}>Confirmar</SubmitButton>
+        <SubmitButton onPress={() => handleAddAppointment()}>Confirmar</SubmitButton>
       </Container>
     </Background>
   );
@@ -60,7 +60,7 @@ Confirm.navigationOptions = ({ navigation }) => ({
   headerLeft: () => (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('SelectDateTime');
+        navigation.navigate('BarbershopDetails');
       }}
     >
       <Icon name="chevron-left" size={30} color="#FFF" />

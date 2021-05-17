@@ -1,15 +1,12 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
-  margin: 60px 0 30px;
-`;
+export const Container = styled.View``;
 
 export const DateButton = styled.TouchableOpacity`
   padding: 0 15px;
-  height: 46px;
-  background: rgba(255, 255, 255, 0.1);
+  height: 45px;
+  background: #111;
   border-radius: 4px;
-  margin: 0 30px;
   flex-direction: row;
   align-items: center;
 `;
