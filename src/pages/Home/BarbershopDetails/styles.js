@@ -11,7 +11,7 @@ export const Container = styled.SafeAreaView`
 
 export const ConfirmButton = styled(RectButton)`
   margin-top: 20px;
-  background: #ff7b00;
+  background: ${props => (props.active ? '#ff7b00' : '#B35600')};;
   height: 50px;
   flex: 1;
   align-items: center;

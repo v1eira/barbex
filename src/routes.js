@@ -17,9 +17,12 @@ import SelectBarbershop from './pages/Home/SelectBarbershop';
 import BarbershopDetails from './pages/Home/BarbershopDetails';
 import Confirm from './pages/Home/Confirm';
 
+import Search from './pages/Search';
+
 import Past from './pages/Appointments/Previous/Past';
 import Rate from './pages/Appointments/Previous/Rate'
 import Next from './pages/Appointments/Next';
+
 import Profile from './pages/Profile';
 
 export default (signedIn = false) =>
@@ -53,6 +56,29 @@ export default (signedIn = false) =>
                 tabBarLabel: 'Início',
                 tabBarIcon: ({ tintColor }) => (
                   <Icon name="home" size={22} color={tintColor} />
+                ),
+              },
+            },
+            Search: {
+              screen: createStackNavigator(
+                {
+                  Search,
+                  BarbershopDetails
+                },
+                {
+                  defaultNavigationOptions: {
+                    headerTransparent: true,
+                    headerTintColor: '#FFF',
+                    headerLeftContainerStyle: {
+                      marginLeft: 10,
+                    },
+                  },
+                }
+              ),
+              navigationOptions: {
+                tabBarLabel: 'Buscar',
+                tabBarIcon: ({ tintColor }) => (
+                  <Icon name="search" size={22} color={tintColor} />
                 ),
               },
             },

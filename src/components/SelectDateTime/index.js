@@ -12,6 +12,23 @@ import { Container, Subtitle, HourList, Hour, Title, EmptyList } from './styles'
 export default function SelectDateTime({ barbershop, barber, selected, setTime }) {
   const [date, setDate] = useState(new Date());
   const [hours, setHours] = useState([]);
+  const [emptyMessage, setEmptyMessage] = useState('Selecione um barbeiro.');
+
+  const makeMessage = (hourList) => {
+    if (hourList.length === 0) {
+      setEmptyMessage('O barbeiro selecionado não atende nesta data.');
+    } else if (hourList.filter(h => { return h.available }).length === 0) {
+      setEmptyMessage('O barbeiro não possui horários disponíveis nesta data.');
+    }
+
+    if (barber.id < 0) {
+      setEmptyMessage('Selecione um barbeiro.');
+    }
+
+    if (barber.id > 0 && hourList.length > 0 && hourList.filter(h => { return h.available }).length > 0) {
+      setEmptyMessage('');
+    }
+  }
 
   useEffect(() => {
     async function loadAvailable() {
@@ -27,11 +44,14 @@ export default function SelectDateTime({ barbershop, barber, selected, setTime }
           );
 
           setHours(response.data);
+          makeMessage(response.data);
         } else {
           setHours([]);
+          makeMessage([]);
         }
       } catch (error) {
         setHours([]);
+        makeMessage([]);
       }
     }
 
@@ -59,7 +79,7 @@ export default function SelectDateTime({ barbershop, barber, selected, setTime }
           </Hour>
         )}
       />
-      {hours.length === 0 && (<EmptyList>O barbeiro selecionado não possui horário disponível para esta data.</EmptyList>)}
+      {(hours.length === 0 || barber.id < 0 || hours.filter(h => { return h.available }).length === 0) && (<EmptyList>{emptyMessage}</EmptyList>)}
 
     </Container>
   );

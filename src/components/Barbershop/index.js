@@ -14,11 +14,11 @@ import {
   Grade,
 } from './styles';
 
-export default function Barbershop({ data, navigation }) {
+export default function Barbershop({ data, navigation, previousPage = 'SelectBarbershop' }) {
   const barbershop = data;
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('BarbershopDetails', { barbershop })}
+      onPress={() => navigation.navigate('BarbershopDetails', { barbershop, previousPage })}
     >
       <Container>
         <Left>

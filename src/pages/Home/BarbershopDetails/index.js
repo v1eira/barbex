@@ -16,11 +16,12 @@ import { ScrollView } from 'react-native-gesture-handler';
 export default function BarbershopDetails({ navigation }) {
   const barbershop = navigation.getParam('barbershop');
   const [selectedService, setSelectedService] = useState({ id: -1 });
-  const [selectedBarber, setSelectedBarber] = useState({ user: { id: -1 } });
+  const [selectedBarber, setSelectedBarber] = useState( { id: -1 } );
   const [selectedTime, setSelectedTime] = useState({ value: -1 });
+  const [formComplete, setFormComplete] = useState(false);
 
   function handleConfirm() {
-    if (barbershop.id !== -1 && selectedService.id !== -1 && selectedBarber.user.id !== -1 && selectedTime.value !== -1) {
+    if (barbershop.id !== -1 && selectedService.id !== -1 && selectedBarber.id !== -1 && selectedTime.value !== -1) {
       navigation.navigate('Confirm', {
         barbershop,
         service: selectedService,
@@ -29,6 +30,14 @@ export default function BarbershopDetails({ navigation }) {
       });
     }
   }
+
+  useEffect(() => {
+    if (barbershop.id !== -1 && selectedService.id !== -1 && selectedBarber.id !== -1 && selectedTime.value !== -1) {
+      setFormComplete(true);
+    } else {
+      setFormComplete(false);
+    }
+  }, [barbershop, selectedService, selectedBarber, selectedTime]);
 
   return (
     <Background>
@@ -50,7 +59,7 @@ export default function BarbershopDetails({ navigation }) {
             selected={selectedTime}
             setTime={setSelectedTime}
           />
-          <ConfirmButton onPress={() => handleConfirm()}>
+          <ConfirmButton active={formComplete} onPress={() => handleConfirm()}>
             <ConfirmText>Agendar</ConfirmText>
           </ConfirmButton>
         </ScrollView>
@@ -63,9 +72,7 @@ BarbershopDetails.navigationOptions = ({ navigation }) => ({
   title: navigation.getParam('barbershop').name,
   headerLeft: () => (
     <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('SelectBarbershop');
-      }}
+      onPress={() => { navigation.navigate(navigation.getParam('previousPage')) }}
     >
       <Icon name="chevron-left" size={30} color="#FFF" />
     </TouchableOpacity>

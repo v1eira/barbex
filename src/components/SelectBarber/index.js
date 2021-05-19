@@ -25,12 +25,12 @@ export default function SelectBarber({ barbershop, selected, setBarbershop }) {
     <BarbersList
       horizontal
       data={barbers}
-      keyExtractor={barber => String(barber.user.id)}
+      keyExtractor={barber => String(barber.id)}
       renderItem={({ item: barber }) => (
         <Barber
-          barberIsSelected={selected.user.id}
-          id={barber.user.id}
-          onPress={() => setBarbershop(selected.user.id === barber.user.id ? { user: { id: -1 } } : barber)}
+          barberIsSelected={selected.id}
+          id={barber.id}
+          onPress={() => setBarbershop(selected.id === barber.id ? { id: -1 } : barber)}
         >
           <Avatar
             source={{

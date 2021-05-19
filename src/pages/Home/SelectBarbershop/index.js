@@ -12,7 +12,11 @@ function SelectBarbershop({ isFocused, navigation }) {
   const [barbershops, setBarbershops] = useState([]);
 
   async function loadBarbershops() {
-    const response = await api.get('barbershops');
+    const response = await api.get('barbershops', {
+      params: {
+        page: 1,
+      }
+    });
 
     setBarbershops(response.data);
   }
