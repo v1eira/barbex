@@ -3190,9 +3190,9 @@ getpass@^0.1.1:
     assert-plus "^1.0.0"
 
 glob-parent@^5.0.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.0.tgz#5f4c1d1e748d30cd73ad2944b3577a81b081e8c2"
-  integrity sha512-qjtRgnIVmOfnKUE3NJAQEdk+lKrxfw8t5ke7SXtfMTHcjsBfOfWXCQfdb30zfDoZQ2IRSIiidmjtbHZPZ++Ihw==
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.2.tgz#869832c58034fe68a4093c17dc15e8340d8401c4"
+  integrity sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==
   dependencies:
     is-glob "^4.0.1"
 
@@ -5719,11 +5719,6 @@ react-native-image-crop-picker@^0.32.2:
   version "0.32.2"
   resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.32.2.tgz#862bddc99f7a8e17b7f584846a0c46bfad233917"
   integrity sha512-x1rwdpVKL6v1AY38rLNYUkLEJIxOK/3C8ipmNbcYFUKunVcmsEvhGLX2ll9kMjp/q+vGOmx4YO38eGp0axYoxg==
-
-react-native-image-picker@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-1.1.0.tgz#c2a0523886edb4cf2cdc008ad0a71433142a4d53"
-  integrity sha512-/KjHf4NNAjl6XM7FQuqvGDz1wB9sRdLf86+2yksLW/QTRR7CitX4TLCM8ZF9CX6Y0MsCTndkZia3zWE+nt/GiA==
 
 react-native-reanimated@^1.4.0:
   version "1.4.0"
